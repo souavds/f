@@ -1,8 +1,11 @@
 import React from 'react'
-import { useQuery } from '@tanstack/react-query'
 
-import Table, { TableColumn } from 'components/Table'
+import { QueryTable, TableColumn } from 'components/Table'
+import Planet from 'components/Planet'
+import Film from 'components/Film'
+import Starship from 'components/Starship'
 import { getPeople } from 'services/PeopleService'
+import extractId from 'utils/extractId'
 
 const columns: TableColumn[] = [
   {
@@ -47,44 +50,39 @@ const columns: TableColumn[] = [
   },
   {
     id: 'homeworld',
-    label: 'Homeworld',
-    render: (value: string) => value
+    label: 'Planet',
+    render: (value: string) => {
+      const id = extractId(value)
+
+      return <Planet id={id} />
+    }
   },
   {
     id: 'films',
     label: 'Films',
-    render: (value: string[]) => value.join(', ')
+    render: (value: string[]) => {
+      return value.map(film => {
+        const id = extractId(film)
+
+        return <Film key={id} id={id} />
+      })
+    }
   },
   {
     id: 'starships',
     label: 'Starships',
-    render: (value: string[]) => value.join(', ')
+    render: (value: string[]) => {
+      return value.map(starship => {
+        const id = extractId(starship)
+
+        return <Starship key={id} id={id} />
+      })
+    }
   }
 ]
 
 function PeopleTable() {
-  const [page, setPage] = React.useState(1)
-
-  const { isLoading, isError, error, data, isFetching, isPreviousData } = useQuery(
-    ['people', page],
-    () => getPeople(page),
-    { keepPreviousData: true }
-  )
-
-  const handlePreviousPage = () => setPage(old => Math.max(old - 1, 1))
-  const handleNextPage = () => setPage(page + 1)
-
-  return (
-    <div>
-      <Table columns={columns} data={data?.results} />
-      <button disabled={!data?.previous} onClick={handlePreviousPage}>
-        Previous
-      </button>
-      <button disabled={!data?.next} onClick={handleNextPage}>
-        Next
-      </button>
-    </div>
-  )
+  return <QueryTable columns={columns} cacheKey='people' fetcher={getPeople} />
 }
 
 export default PeopleTable

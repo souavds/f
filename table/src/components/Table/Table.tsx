@@ -5,7 +5,7 @@ import * as Styles from './styles'
 export type TableColumn = {
   id: string
   label: string
-  render: (value: any) => string
+  render: (value: any) => React.ReactNode | string
   align?: 'left' | 'right' | 'center'
 }
 

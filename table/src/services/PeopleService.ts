@@ -23,6 +23,6 @@ export type Person = {
 export type PeopleResponse = GenericResponse<Person>
 
 export const getPeople = async (page = 0) => {
-  const people = await fetcher<PeopleResponse>(`people/?page=${page}`)
-  return people
+  const value = await fetcher<PeopleResponse>(`people/?page=${page}`)
+  return value
 }

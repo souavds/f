@@ -81,7 +81,8 @@ const columns: TableColumn[] = [
           return <Film key={id} id={id} />
         })}
       </Container>
-    )
+    ),
+    loader: <span>Loading...</span>
   },
   {
     id: 'starships',
@@ -94,7 +95,8 @@ const columns: TableColumn[] = [
           return <Starship key={id} id={id} />
         })}
       </Container>
-    )
+    ),
+    loader: <span>Loading...</span>
   }
 ]
 

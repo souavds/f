@@ -5,7 +5,8 @@ import * as Styles from './styles'
 export type TableColumn = {
   id: string
   label: string
-  render: (value: any) => React.ReactNode | string
+  render: (value: unknown) => React.ReactNode | string
+  loader?: React.ReactNode
 }
 
 export type TableProps<T> = {
@@ -29,9 +30,11 @@ function Table<T>(props: TableProps<T>) {
         {data.map((row, index) => (
           <Styles.TableRow key={index}>
             {columns.map(column => (
-              <Styles.TableCell key={`${index}-${column.id}`}>
-                {column.render(row[column.id as keyof T])}
-              </Styles.TableCell>
+              <React.Suspense key={`${index}-${column.id}`} fallback={column.loader}>
+                <Styles.TableCell>
+                  {column.render(row[column.id as keyof T])}
+                </Styles.TableCell>
+              </React.Suspense>
             ))}
           </Styles.TableRow>
         ))}

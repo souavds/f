@@ -6,7 +6,13 @@ import globalStyles from 'theme/global'
 
 const Home = React.lazy(() => import('pages/Home'))
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+})
 
 function Router() {
   globalStyles()

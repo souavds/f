@@ -1,11 +1,14 @@
 import React from 'react'
 
 import { QueryTable, TableColumn } from 'components/Table'
-import Planet from 'components/Planet'
-import Film from 'components/Film'
-import Starship from 'components/Starship'
 import { getPeople } from 'services/PeopleService'
-import extractId from 'utils/extractId'
+import extractNumber from 'utils/extractNumber'
+
+import Planet from '../Planet'
+import Film from '../Film'
+import Starship from '../Starship'
+import Gender, { GenderType } from '../Gender'
+import { Container } from './styles'
 
 const columns: TableColumn[] = [
   {
@@ -16,12 +19,22 @@ const columns: TableColumn[] = [
   {
     id: 'height',
     label: 'Height',
-    render: (value: string) => value
+    render: (value: string) => {
+      if (value !== 'unknown') {
+        return `${Number(value) / 100} m`
+      }
+      return value
+    }
   },
   {
     id: 'mass',
     label: 'Weight',
-    render: (value: string) => value
+    render: (value: string) => {
+      if (value !== 'unknown') {
+        return `${value} kg`
+      }
+      return value
+    }
   },
   {
     id: 'hair_color',
@@ -46,13 +59,13 @@ const columns: TableColumn[] = [
   {
     id: 'gender',
     label: 'Gender',
-    render: (value: string) => value
+    render: (value: string) => <Gender type={value as GenderType} />
   },
   {
     id: 'homeworld',
     label: 'Planet',
     render: (value: string) => {
-      const id = extractId(value)
+      const id = extractNumber(value)
 
       return <Planet id={id} />
     }
@@ -60,24 +73,28 @@ const columns: TableColumn[] = [
   {
     id: 'films',
     label: 'Films',
-    render: (value: string[]) => {
-      return value.map(film => {
-        const id = extractId(film)
+    render: (value: string[]) => (
+      <Container>
+        {value.map(film => {
+          const id = extractNumber(film)
 
-        return <Film key={id} id={id} />
-      })
-    }
+          return <Film key={id} id={id} />
+        })}
+      </Container>
+    )
   },
   {
     id: 'starships',
     label: 'Starships',
-    render: (value: string[]) => {
-      return value.map(starship => {
-        const id = extractId(starship)
+    render: (value: string[]) => (
+      <Container>
+        {value.map(starship => {
+          const id = extractNumber(starship)
 
-        return <Starship key={id} id={id} />
-      })
-    }
+          return <Starship key={id} id={id} />
+        })}
+      </Container>
+    )
   }
 ]
 

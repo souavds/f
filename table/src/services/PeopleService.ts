@@ -1,5 +1,5 @@
 import fetcher from 'configs/fetcher'
-import { GenericResponse } from 'types/GenericResponse'
+import { GenericResponse, QueryParams } from 'types/Http'
 
 export type Person = {
   name: string
@@ -22,7 +22,7 @@ export type Person = {
 
 export type PeopleResponse = GenericResponse<Person>
 
-export const getPeople = async (page = 0) => {
-  const value = await fetcher<PeopleResponse>(`people/?page=${page}`)
+export const getPeople = async ({ page = 0, search = '' }: QueryParams) => {
+  const value = await fetcher<PeopleResponse>(`people/?page=${page}&search=${search}`)
   return value
 }

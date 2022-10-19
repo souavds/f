@@ -1,6 +1,6 @@
 import React from 'react'
 
-const usePagination = () => {
+export default function usePagination() {
   const [page, setPage] = React.useState(1)
   const [pages, setPages] = React.useState(1)
 
@@ -27,5 +27,3 @@ const usePagination = () => {
     reset
   }
 }
-
-export default usePagination

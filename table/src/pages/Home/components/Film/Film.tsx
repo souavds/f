@@ -1,6 +1,8 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
+
 import { getFilm } from 'services/FilmService'
+import Chip from 'components/Chip'
 
 export type FilmProps = {
   id: number
@@ -13,7 +15,7 @@ function Film(props: FilmProps) {
     keepPreviousData: true
   })
 
-  return <span>{data?.title}</span>
+  return <Chip>{data?.title}</Chip>
 }
 
 export default Film

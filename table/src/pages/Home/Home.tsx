@@ -2,12 +2,14 @@ import React from 'react'
 
 import PeopleTable from './components/PeopleTable'
 
+import { Container, Title } from './styles'
+
 function Home() {
   return (
-    <div>
-      <h1>Home</h1>
+    <Container>
+      <Title>Star Wars Encyclopedia</Title>
       <PeopleTable />
-    </div>
+    </Container>
   )
 }
 

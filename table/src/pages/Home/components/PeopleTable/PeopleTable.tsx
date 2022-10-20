@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { QueryTable, TableColumn } from 'components/Table'
+import Loader from 'components/Loader'
 import { getPeople } from 'services/PeopleService'
 import extractNumber from 'utils/extractNumber'
 
@@ -68,7 +69,8 @@ const columns: TableColumn[] = [
       const id = extractNumber(value)
 
       return <Planet id={id} />
-    }
+    },
+    loader: <Loader style={{ width: '100px' }}/>
   },
   {
     id: 'films',
@@ -82,7 +84,7 @@ const columns: TableColumn[] = [
         })}
       </Container>
     ),
-    loader: <span>Loading...</span>
+    loader: <Loader style={{ width: '100px' }}/>
   },
   {
     id: 'starships',
@@ -96,7 +98,7 @@ const columns: TableColumn[] = [
         })}
       </Container>
     ),
-    loader: <span>Loading...</span>
+    loader: <Loader style={{ width: '100px' }}/>
   }
 ]
 

@@ -5,7 +5,7 @@ import * as Styles from './styles'
 export type TableColumn = {
   id: string
   label: string
-  render: (value: unknown) => React.ReactNode | string
+  render: (value: any) => React.ReactNode | string
   loader?: React.ReactNode
 }
 

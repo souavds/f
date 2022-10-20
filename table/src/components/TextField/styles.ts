@@ -1,9 +1,9 @@
-import { styled } from '@stitches/react'
+import { styled } from 'theme/theme'
 
 export const Input = styled('input', {
-  padding: '1rem',
+  width: 'fit-content',
+  padding: '$sizes$lg',
   border: 'none',
-  background: 'grey',
-  borderRadius: '5px',
-  minWidth: '5rem'
+  borderRadius: '$radii$md',
+  background: '$colors$gray500'
 })

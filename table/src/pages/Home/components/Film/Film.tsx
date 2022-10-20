@@ -11,7 +11,7 @@ export type FilmProps = {
 function Film(props: FilmProps) {
   const { id } = props
 
-  const { isLoading, isError, error, data, isFetching, isPreviousData } = useQuery(['films', id], () => getFilm(id), {
+  const { data } = useQuery(['films', id], () => getFilm(id), {
     keepPreviousData: true
   })
 

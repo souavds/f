@@ -11,13 +11,9 @@ export type StarshipProps = {
 function Starship(props: StarshipProps) {
   const { id } = props
 
-  const { isLoading, isError, error, data, isFetching, isPreviousData } = useQuery(
-    ['starships', id],
-    () => getStarship(id),
-    {
-      keepPreviousData: true
-    }
-  )
+  const { data } = useQuery(['starships', id], () => getStarship(id), {
+    keepPreviousData: true
+  })
 
   return <Chip>{data?.name}</Chip>
 }

@@ -11,11 +11,7 @@ export type PlanetProps = {
 function Planet(props: PlanetProps) {
   const { id } = props
 
-  const { isLoading, isError, error, data, isFetching, isPreviousData } = useQuery(
-    ['planets', id],
-    () => getPlanet(id),
-    { keepPreviousData: true }
-  )
+  const { data } = useQuery(['planets', id], () => getPlanet(id), { keepPreviousData: true })
 
   return <Chip>{data?.name}</Chip>
 }

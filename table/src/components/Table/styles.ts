@@ -1,8 +1,9 @@
-import { styled } from '@stitches/react'
+import { styled } from 'theme/theme'
 
 export const Table = styled('table', {
   display: 'table',
   width: '100%',
+  overflowX: 'auto',
   borderCollapse: 'collapse',
   borderSpacing: 0
 })
@@ -16,9 +17,29 @@ export const TableBody = styled('tbody', {
 })
 
 export const TableRow = styled('tr', {
-  display: 'table-row'
+  display: 'table-row',
+  height: '$sizes$xxl'
 })
 
-export const TableHeader = styled('th', {})
+export const TableHeader = styled('th', {
+  maxWidth: '10rem'
+})
 
-export const TableCell = styled('td', {})
+export const TableCell = styled('td', {
+  overflowX: 'auto'
+})
+
+export const Container = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'end',
+  width: '100%',
+  gap: '$space$lg'
+})
+
+export const PaginationWrapper = styled('div', {
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  gap: '$space$lg'
+})

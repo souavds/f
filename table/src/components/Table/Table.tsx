@@ -30,11 +30,9 @@ function Table<T>(props: TableProps<T>) {
         {data.map((row, index) => (
           <Styles.TableRow key={index}>
             {columns.map(column => (
-              <React.Suspense key={`${index}-${column.id}`} fallback={column.loader}>
-                <Styles.TableCell>
-                  {column.render(row[column.id as keyof T])}
-                </Styles.TableCell>
-              </React.Suspense>
+              <Styles.TableCell key={`${index}-${column.id}`}>
+                <React.Suspense fallback={column.loader}>{column.render(row[column.id as keyof T])}</React.Suspense>
+              </Styles.TableCell>
             ))}
           </Styles.TableRow>
         ))}

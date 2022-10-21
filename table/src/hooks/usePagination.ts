@@ -4,9 +4,21 @@ export default function usePagination() {
   const [page, setPage] = React.useState(1)
   const [pages, setPages] = React.useState(1)
 
-  const handleNextPage = () => setPage(value => value + 1)
-  const handlePrevPage = () => setPage(value => Math.max(value - 1, 1))
-  const calcPages = (total: number, limit: number) => setPages(Math.ceil(total / limit))
+  const handleNextPage = () => {
+    if (!hasNext) return
+
+    setPage(value => value + 1)
+  }
+  const handlePrevPage = () => {
+    if (!hasPrev) return
+
+    setPage(value => Math.max(value - 1, 1))
+  }
+  const calcPages = (total: number, limit: number) => {
+    const pages = total / limit
+
+    isNaN(pages) ? setPages(1) : setPages(Math.ceil(pages))
+  }
 
   const reset = () => {
     setPage(1)

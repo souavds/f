@@ -38,6 +38,9 @@ describe('usePagination', () => {
 
     act(() => {
       result.current.calcPages(101, 10)
+    })
+
+    act(() => {
       result.current.handleNextPage()
     })
 
@@ -58,9 +61,21 @@ describe('usePagination', () => {
 
     act(() => {
       result.current.calcPages(101, 10)
+    })
+
+    act(() => {
       result.current.handleNextPage()
+    })
+
+    act(() => {
       result.current.handleNextPage()
+    })
+
+    act(() => {
       result.current.handleNextPage()
+    })
+
+    act(() => {
       result.current.handlePrevPage()
     })
 
@@ -80,24 +95,45 @@ describe('usePagination', () => {
     const { result } = renderHook(() => usePagination())
 
     act(() => {
-      result.current.calcPages(101, 10)
+      result.current.calcPages(31, 10)
+    })
+
+    act(() => {
       result.current.handleNextPage()
+    })
+
+    act(() => {
       result.current.handleNextPage()
-      result.current.handleNextPage()
-      result.current.handleNextPage()
-      result.current.handleNextPage()
-      result.current.handleNextPage()
-      result.current.handleNextPage()
-      result.current.handleNextPage()
-      result.current.handleNextPage()
+    })
+
+    act(() => {
       result.current.handleNextPage()
     })
 
     expect(result.current).toEqual({
-      page: 11,
-      pages: 11,
+      page: 4,
+      pages: 4,
       hasNext: false,
       hasPrev: true,
+      handleNextPage: expect.any(Function),
+      handlePrevPage: expect.any(Function),
+      calcPages: expect.any(Function),
+      reset: expect.any(Function)
+    })
+  })
+
+  it('should have pages to 1 when total is 0', () => {
+    const { result } = renderHook(() => usePagination())
+
+    act(() => {
+      result.current.calcPages(0, 0)
+    })
+
+    expect(result.current).toEqual({
+      page: 1,
+      pages: 1,
+      hasNext: false,
+      hasPrev: false,
       handleNextPage: expect.any(Function),
       handlePrevPage: expect.any(Function),
       calcPages: expect.any(Function),

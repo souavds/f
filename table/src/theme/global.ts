@@ -1,4 +1,4 @@
-import { globalCss } from '@stitches/react'
+import { globalCss } from './theme'
 
 const globalStyles = globalCss({
   '*,*::before, *::after': {
@@ -12,7 +12,8 @@ const globalStyles = globalCss({
     scrollBehavior: 'smooth'
   },
   body: {
-    fontFamily: 'Roboto, sans-serif'
+    fontFamily: 'Roboto, sans-serif',
+    background: '$colors$white'
   }
 })
 

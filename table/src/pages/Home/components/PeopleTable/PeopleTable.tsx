@@ -2,6 +2,7 @@ import React from 'react'
 
 import { QueryTable, TableColumn } from 'components/Table'
 import Loader from 'components/Loader'
+import Chip from 'components/Chip'
 import { getPeople } from 'services/PeopleService'
 import extractNumber from 'utils/extractNumber'
 
@@ -9,7 +10,7 @@ import Planet from '../Planet'
 import Film from '../Film'
 import Starship from '../Starship'
 import Gender, { GenderType } from '../Gender'
-import { Container } from './styles'
+import { ChipLoader, Chips } from './styles'
 
 const columns: TableColumn[] = [
   {
@@ -70,40 +71,62 @@ const columns: TableColumn[] = [
 
       return <Planet id={id} />
     },
-    loader: <Loader style={{ width: '100px' }}/>
+    loader: (
+      <ChipLoader>
+        <Loader style={{ width: '100px' }} />
+      </ChipLoader>
+    )
   },
   {
     id: 'films',
     label: 'Films',
     render: (value: string[]) => (
-      <Container>
+      <Chips>
         {value.map(film => {
           const id = extractNumber(film)
 
           return <Film key={id} id={id} />
         })}
-      </Container>
+      </Chips>
     ),
-    loader: <Loader style={{ width: '100px' }}/>
+    loader: (
+      <ChipLoader>
+        <Loader style={{ width: '100px' }} />
+      </ChipLoader>
+    )
   },
   {
     id: 'starships',
     label: 'Starships',
     render: (value: string[]) => (
-      <Container>
-        {value.map(starship => {
-          const id = extractNumber(starship)
+      <>
+        {value.length ? (
+          <Chips>
+            {value.map(starship => {
+              const id = extractNumber(starship)
 
-          return <Starship key={id} id={id} />
-        })}
-      </Container>
+              return <Starship key={id} id={id} />
+            })}
+          </Chips>
+        ) : (
+          <Chip>None</Chip>
+        )}
+      </>
     ),
-    loader: <Loader style={{ width: '100px' }}/>
+    loader: (
+      <ChipLoader>
+        <Loader style={{ width: '100px' }} />
+      </ChipLoader>
+    )
   }
 ]
 
 function PeopleTable() {
-  return <QueryTable columns={columns} cacheKey='people' fetcher={getPeople} />
+  return (
+    <>
+      <QueryTable columns={columns} cacheKey='people' fetcher={getPeople} />
+    </>
+  )
 }
 
 export default PeopleTable

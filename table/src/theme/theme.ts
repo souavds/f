@@ -1,8 +1,9 @@
 import { createStitches } from '@stitches/react'
 
-const { styled, css } = createStitches({
+const { styled, css, keyframes, globalCss } = createStitches({
   theme: {
     colors: {
+      white: '#ffffff',
       gray200: '#f5f5f5',
       gray500: '#e4e4e4'
     },
@@ -11,7 +12,9 @@ const { styled, css } = createStitches({
       md: '0.5rem',
       lg: '1rem',
       xl: '2rem',
-      xxl: '3rem'
+      xxl: '3rem',
+      xxxl: '5rem',
+      xxxxl: '10rem'
     },
     space: {
       sm: '0.25rem',
@@ -28,4 +31,4 @@ const { styled, css } = createStitches({
   }
 })
 
-export { styled, css }
+export { styled, css, keyframes, globalCss }

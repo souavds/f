@@ -10,7 +10,7 @@ import Button from 'components/Button'
 import Icon from 'components/Icon'
 
 import Table, { TableColumn } from './Table'
-import { Container, PaginationWrapper } from './styles'
+import { Container, TableContainer, PaginationWrapper } from './styles'
 
 export type QueryTableProps<T> = {
   columns: TableColumn[]
@@ -56,7 +56,9 @@ function QueryTable<T>(props: QueryTableProps<T>) {
   return (
     <Container>
       <Input onChange={handleSearch} placeholder='Search character' />
-      <Table columns={columns} data={data?.results} />
+      <TableContainer>
+        <Table columns={columns} data={data?.results} />
+      </TableContainer>
       <PaginationWrapper>
         {page} / {pages}
         <Button disabled={!hasPrev} onClick={handlePrevPage}>

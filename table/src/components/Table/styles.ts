@@ -18,15 +18,22 @@ export const TableBody = styled('tbody', {
 
 export const TableRow = styled('tr', {
   display: 'table-row',
-  height: '$sizes$xxl'
+  verticalAlign: 'middle'
 })
 
 export const TableHeader = styled('th', {
-  maxWidth: '10rem'
+  display: 'table-cell',
+  textAlign: 'left'
 })
 
 export const TableCell = styled('td', {
-  overflowX: 'auto'
+  display: 'table-cell',
+  textAlign: 'left',
+  width: '$sizes$xxl',
+  maxWidth: '$sizes$xxxxl',
+  height: '$sizes$xxxxl',
+  overflowX: 'auto',
+  padding: '$space$sm'
 })
 
 export const Container = styled('div', {
@@ -35,6 +42,11 @@ export const Container = styled('div', {
   alignItems: 'end',
   width: '100%',
   gap: '$space$lg'
+})
+
+export const TableContainer = styled('div', {
+  width: '100%',
+  overflowX: 'auto'
 })
 
 export const PaginationWrapper = styled('div', {

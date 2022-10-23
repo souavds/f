@@ -1,0 +1,10 @@
+.option:not(.disabled):hover {
+  background-color: var(--gray-600);
+  cursor: pointer;
+}
+
+.option.disabled {
+  color: inherit;
+  user-select: none;
+  opacity: 0.6;
+}

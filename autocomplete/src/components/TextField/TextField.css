@@ -1,0 +1,19 @@
+.text-field {
+  color: inherit;
+  background: var(--gray-700);
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-size: 1.4rem;
+  border: 2px solid var(--gray-700);
+  outline: none;
+  transition: border-color 150ms;
+}
+
+.text-field:hover {
+  border-color: var(--white);
+}
+
+.text-field:focus {
+  border-color: var(--primary);
+}

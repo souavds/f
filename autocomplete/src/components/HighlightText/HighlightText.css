@@ -1,0 +1,5 @@
+.highlight {
+  color: var(--primary);
+  background-color: transparent;
+  font-weight: 800;
+}

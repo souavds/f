@@ -1,0 +1,30 @@
+.autocomplete {
+  position: relative;
+}
+
+.field-group {
+  position: relative;
+}
+
+.field {
+  padding-right: 4rem;
+}
+
+.search-icon {
+  position: absolute;
+  cursor: pointer;
+  fill: var(--white);
+  opacity: 0.6;
+  pointer-events: none;
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+}
+
+.options-dropdown {
+  position: absolute;
+  width: 100%;
+  margin-top: 0.5rem;
+  overflow-y: auto;
+  max-height: 20rem;
+}

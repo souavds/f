@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 40rem;
+  min-height: 20rem;
+}
+
+.selected {
+  padding: 1rem 1.5rem;
+}

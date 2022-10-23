@@ -1,41 +1,41 @@
 import React from 'react'
 
 import { useBoardStore } from 'stores/board'
+import { useTaskFormStore } from 'stores/task-form'
 import Modal from 'components/Modal'
 
-type TaskFormProps = {
-  isOpen: boolean
-  openModal: () => void
-  closeModal: () => void
-}
-
-function TaskForm(props: TaskFormProps) {
-  const { isOpen, openModal, closeModal } = props
-
-  const { task, column, getColumn, selectColumn, addTaskToColumn, updateTask, resetTask } = useBoardStore(state => ({
+function TaskForm() {
+  const { isOpen, columnId, task, reset } = useTaskFormStore(state => ({
+    isOpen: state.isOpen,
+    columnId: state.columnId,
     task: state.task,
-    column: state.column,
-    getColumn: state.getColumn,
-    selectColumn: state.selectColumn,
-    addTaskToColumn: state.addTaskToColumn,
-    updateTask: state.updateTask,
-    resetTask: state.resetTask
+    reset: state.reset
+  }))
+
+  const { getColumnById, addTask, updateTask } = useBoardStore(state => ({
+    getColumnById: state.getColumnById,
+    addTask: state.addTask,
+    updateTask: state.updateTask
   }))
 
   const [value, setValue] = React.useState('')
 
-  const hasTaskSelected = React.useMemo(() => task.id !== '', [task])
+  const hasTaskSelected = React.useMemo(() => task.id !== '' && task.content !== '', [task.id, task.content])
 
   React.useEffect(() => {
     if (hasTaskSelected) {
-      openModal()
       setValue(task.content)
     }
-  }, [hasTaskSelected, task.content, openModal])
+  }, [hasTaskSelected, task.content])
+
+  const handleClose = () => {
+    setValue('')
+    reset()
+  }
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Escape') {
-      closeModal()
+      handleClose()
     }
     if (event.key === 'Enter') {
       handleAddOrUpdate()
@@ -47,18 +47,15 @@ function TaskForm(props: TaskFormProps) {
   }
 
   const handleAddOrUpdate = () => {
-    if (hasTaskSelected) updateTask(column, task.id, value)
-    else addTaskToColumn(column, value)
-    setValue('')
-    selectColumn('')
-    resetTask()
-    closeModal()
+    if (hasTaskSelected) updateTask(columnId, task.id, value)
+    else addTask(columnId, value)
+    handleClose()
   }
 
   const title = React.useMemo(() => {
-    const selectedColumn = getColumn(column)
+    const selectedColumn = getColumnById(columnId)
     return selectedColumn ? selectedColumn.title : ''
-  }, [column, getColumn])
+  }, [columnId, getColumnById])
 
   return (
     <Modal
@@ -82,7 +79,7 @@ function TaskForm(props: TaskFormProps) {
         </button>
       }
       isOpen={isOpen}
-      onClose={closeModal}
+      onClose={handleClose}
     >
       <input
         type='text'
@@ -91,6 +88,7 @@ function TaskForm(props: TaskFormProps) {
         placeholder='Task name'
         onChange={handleChange}
         onKeyDown={handleKeyDown}
+        value={value}
       />
     </Modal>
   )

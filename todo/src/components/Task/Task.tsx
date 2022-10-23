@@ -3,6 +3,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { useDraggable } from '@dnd-kit/core'
 
 import { TaskType, useBoardStore } from 'stores/board'
+import { useTaskFormStore } from 'stores/task-form'
 import Card from 'components/Card'
 import Icon from 'components/Icon'
 
@@ -22,15 +23,20 @@ function Task(props: TaskProps) {
     }
   })
 
-  const { selectTask, selectColumn, removeTask } = useBoardStore(state => ({
-    selectTask: state.selectTask,
-    selectColumn: state.selectColumn,
+  const { setTask, setColumnId, toggle } = useTaskFormStore(state => ({
+    setTask: state.setTask,
+    setColumnId: state.setColumnId,
+    toggle: state.toggle
+  }))
+
+  const { removeTask } = useBoardStore(state => ({
     removeTask: state.removeTask
   }))
 
   const handleEdit = () => {
-    selectColumn(columnId)
-    selectTask(value)
+    setColumnId(columnId)
+    setTask(value)
+    toggle()
   }
 
   const handleRemove = () => {
@@ -48,7 +54,7 @@ function Task(props: TaskProps) {
       ref={setNodeRef}
       className={isDragging ? 'shadow-sm z-50' : ''}
       cardTitle={
-        <span className='w-full' {...listeners} {...attributes}>
+        <span className='w-full cursor-pointer' onClick={handleEdit}>
           {value.content}
         </span>
       }

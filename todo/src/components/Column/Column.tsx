@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDroppable } from '@dnd-kit/core'
 
 import { useBoardStore } from 'stores/board'
 import Icon from 'components/Icon'
@@ -11,6 +12,13 @@ type ColumnProps = {
 
 function Column(props: ColumnProps) {
   const { id, onAddTask } = props
+
+  const { isOver, setNodeRef } = useDroppable({
+    id,
+    data: {
+      columnId: id
+    }
+  })
 
   const { getColumn, countTaskByColumn } = useBoardStore(state => ({
     getColumn: state.getColumn,
@@ -25,7 +33,7 @@ function Column(props: ColumnProps) {
   }, [column])
 
   return (
-    <div className='flex flex-col h-fit bg-slate-200 rounded-md'>
+    <div className='flex flex-col h-fit bg-slate-200 rounded-md' ref={setNodeRef}>
       <div className='py-2 px-4'>
         <h2 className='font-bold text-sm'>
           {column.title} <span className='text-xs mx-2 p-1 bg-slate-300 rounded-full'>{countTaskByColumn(id)}</span>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDndMonitor } from '@dnd-kit/core'
 
 import { useBoardStore } from 'stores/board'
 import { useModal } from 'components/Modal'
@@ -7,10 +8,30 @@ import Column from 'components/Column'
 import TaskForm from './components/TaskForm'
 
 function Board() {
-  const { columns, selectColumn } = useBoardStore(state => ({
+  const { columns, selectColumn, moveTask } = useBoardStore(state => ({
     columns: state.columns,
-    selectColumn: state.selectColumn
+    selectColumn: state.selectColumn,
+    moveTask: state.moveTask
   }))
+
+  useDndMonitor({
+    onDragEnd(event) {
+      const { active, over } = event
+
+      if (over) {
+        const { data: from } = active
+        const { data: to } = over
+
+        const columnId = from.current!.columnId
+        const toColumnId = to.current!.columnId
+        const taskId = from.current!.task.id
+
+        if (columnId !== toColumnId) {
+          moveTask(columnId, toColumnId, taskId)
+        }
+      }
+    }
+  })
 
   const { isOpen, openModal, closeModal } = useModal()
 

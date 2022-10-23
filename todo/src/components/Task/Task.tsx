@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
+import { useDraggable } from '@dnd-kit/core'
 
 import { TaskType, useBoardStore } from 'stores/board'
 import Card from 'components/Card'
@@ -12,6 +13,14 @@ type TaskProps = {
 
 function Task(props: TaskProps) {
   const { columnId, value } = props
+
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: value.id,
+    data: {
+      columnId,
+      task: value
+    }
+  })
 
   const { selectTask, selectColumn, removeTask } = useBoardStore(state => ({
     selectTask: state.selectTask,
@@ -28,9 +37,19 @@ function Task(props: TaskProps) {
     removeTask(columnId, value.id)
   }
 
+  const style = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      }
+    : undefined
+
   return (
     <Card
+      ref={setNodeRef}
       title={value.content}
+      style={style}
+      {...listeners}
+      {...attributes}
       actions={
         <Menu as='div' className='relative inline-block text-left'>
           <div>

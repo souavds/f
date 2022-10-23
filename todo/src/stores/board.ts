@@ -28,6 +28,7 @@ export interface BoardState {
   updateTask: (columnId: string, taskId: string, content: string) => void
   selectTask: (task: TaskType) => void
   removeTask: (columnId: string, taskId: string) => void
+  moveTask: (columnId: string, toColumnId: string, taskId: string) => void
   resetTask: () => void
 }
 
@@ -73,6 +74,18 @@ export const useBoardStore = create<BoardState>()(
             columns: {
               ...get().columns,
               [column.id]: { ...column, tasks }
+            }
+          })
+        },
+        moveTask: (columnId: string, toColumnId: string, taskId: string) => {
+          const column = get().getColumn(columnId)
+          const toColumn = get().getColumn(toColumnId)
+          const { [taskId]: task, ...tasks } = column.tasks
+          set({
+            columns: {
+              ...get().columns,
+              [column.id]: { ...column, tasks },
+              [toColumn.id]: { ...toColumn, tasks: { ...toColumn.tasks, [taskId]: task } }
             }
           })
         },

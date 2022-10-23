@@ -31,7 +31,16 @@ function TaskForm(props: TaskFormProps) {
       openModal()
       setValue(task.content)
     }
-  }, [hasTaskSelected, task.content])
+  }, [hasTaskSelected, task.content, openModal])
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      closeModal()
+    }
+    if (event.key === 'Enter') {
+      handleAddOrUpdate()
+    }
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
@@ -76,6 +85,7 @@ function TaskForm(props: TaskFormProps) {
         className='mt-4 p-2 w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
         placeholder='Task name'
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
     </Modal>
   )

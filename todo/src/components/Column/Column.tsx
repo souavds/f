@@ -58,10 +58,11 @@ function Column(props: ColumnProps) {
         <button
           className='flex justify-center py-2 w-full bg-zinc-300 border border-zinc-400 rounded'
           onClick={handleAdd}
+          aria-label='Add task'
         >
           <Icon type='plus' className='fill-current' height={16} width={16} />
         </button>
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-2 max-h-96 overflow-y-auto'>
           {tasks.map(task => (
             <Task key={task.id} columnId={id} value={task} />
           ))}

@@ -5,7 +5,7 @@ import { useBoardStore } from './board'
 
 jest.mock('uuid')
 
-const initialState = {
+export const initialState = {
   columns: {
     backlog: {
       id: 'backlog',

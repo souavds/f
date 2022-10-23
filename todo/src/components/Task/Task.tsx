@@ -66,6 +66,7 @@ function Task(props: TaskProps) {
         <div className='flex gap-1'>
           <button
             className='inline-flex w-full justify-center rounded-md bg-zinc-100 p-1'
+            aria-label='drag'
             {...listeners}
             {...attributes}
           >
@@ -73,7 +74,7 @@ function Task(props: TaskProps) {
           </button>
           <Dropdown
             action={
-              <Menu.Button className='inline-flex w-full justify-center rounded-md bg-zinc-100 p-1'>
+              <Menu.Button className='inline-flex w-full justify-center rounded-md bg-zinc-100 p-1' aria-label='menu'>
                 <Icon type='ellipsis' className='fill-current' height={14} width={14} />
               </Menu.Button>
             }
@@ -82,6 +83,7 @@ function Task(props: TaskProps) {
               <button
                 className='text-zinc-600 flex w-full items-center rounded-md px-2 py-2 text-xs hover:bg-zinc-100'
                 onClick={handleEdit}
+                aria-label='edit'
               >
                 <Icon type='pencil' className='fill-current' height={12} width={12} />
                 <span className='ml-2'>Edit</span>
@@ -91,6 +93,7 @@ function Task(props: TaskProps) {
               <button
                 className='text-zinc-600 flex w-full items-center rounded-md px-2 py-2 text-xs hover:bg-zinc-100'
                 onClick={handleRemove}
+                aria-label='remove'
               >
                 <Icon type='trash' className='fill-current' height={12} width={12} />
                 <span className='ml-2'>Remove</span>

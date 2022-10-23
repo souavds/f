@@ -14,7 +14,7 @@ type TaskProps = {
 function Task(props: TaskProps) {
   const { columnId, value } = props
 
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: value.id,
     data: {
       columnId,
@@ -46,15 +46,25 @@ function Task(props: TaskProps) {
   return (
     <Card
       ref={setNodeRef}
-      title={value.content}
+      className={isDragging ? 'shadow-sm z-50' : ''}
+      cardTitle={
+        <span className='w-full' {...listeners} {...attributes}>
+          {value.content}
+        </span>
+      }
       style={style}
-      {...listeners}
-      {...attributes}
       actions={
         <Menu as='div' className='relative inline-block text-left'>
-          <div>
-            <Menu.Button className='inline-flex w-full justify-center rounded-md bg-slate-100 p-1'>
-              <Icon type='ellipsis' className='fill-current' height={16} width={16} />
+          <div className='flex gap-2'>
+            <Menu.Button
+              className='inline-flex w-full justify-center rounded-md bg-zinc-100 p-1'
+              {...listeners}
+              {...attributes}
+            >
+              <Icon type='move' className='fill-current' height={14} width={14} />
+            </Menu.Button>
+            <Menu.Button className='inline-flex w-full justify-center rounded-md bg-zinc-100 p-1'>
+              <Icon type='ellipsis' className='fill-current' height={14} width={14} />
             </Menu.Button>
           </div>
           <Transition
@@ -70,7 +80,7 @@ function Task(props: TaskProps) {
               <div className='px-1 py-1'>
                 <Menu.Item>
                   <button
-                    className='text-gray-600 flex w-full items-center rounded-md px-2 py-2 text-xs hover:bg-slate-50'
+                    className='text-zinc-600 flex w-full items-center rounded-md px-2 py-2 text-xs hover:bg-zinc-100'
                     onClick={handleEdit}
                   >
                     <Icon type='pencil' className='fill-current' height={12} width={12} />
@@ -79,7 +89,7 @@ function Task(props: TaskProps) {
                 </Menu.Item>
                 <Menu.Item>
                   <button
-                    className='text-gray-600 flex w-full items-center rounded-md px-2 py-2 text-xs hover:bg-slate-50'
+                    className='text-zinc-600 flex w-full items-center rounded-md px-2 py-2 text-xs hover:bg-zinc-100'
                     onClick={handleRemove}
                   >
                     <Icon type='trash' className='fill-current' height={12} width={12} />

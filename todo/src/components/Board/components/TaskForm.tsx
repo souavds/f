@@ -87,7 +87,7 @@ function TaskForm(props: TaskFormProps) {
       <input
         type='text'
         name='taskName'
-        className='mt-4 p-2 w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
+        className='mt-4 p-2 w-full rounded-md border-zinc-300 focus:border-indigo-500 focus:ring-indigo-500'
         placeholder='Task name'
         onChange={handleChange}
         onKeyDown={handleKeyDown}

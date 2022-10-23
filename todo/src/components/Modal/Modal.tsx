@@ -39,7 +39,7 @@ function Modal(props: ModalProps) {
               leaveTo='opacity-0 scale-95'
             >
               <Dialog.Panel className='w-full max-w-md transform overflow-hidden rounded-md bg-white p-6 text-left align-middle transition-all'>
-                <Dialog.Title as='h3' className='text-lg font-medium leading-6 text-gray-900'>
+                <Dialog.Title as='h3' className='text-lg font-medium leading-6 text-zinc-900'>
                   {title}
                 </Dialog.Title>
                 <div className='mt-2'>{children}</div>

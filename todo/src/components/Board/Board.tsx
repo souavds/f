@@ -45,7 +45,7 @@ function Board() {
   }
 
   return (
-    <div className={`grid grid-cols-4 gap-4 p-4 min-h-fit h-full rounded-md bg-slate-100`}>
+    <div className={`grid grid-cols-4 gap-4 p-4 min-h-fit h-full rounded-md bg-zinc-50`}>
       {columnsIds.map(id => (
         <Column key={id} id={id} onAddTask={handleAddTask} />
       ))}

@@ -6,7 +6,7 @@ const loader = (type: string) =>
 export type GenericIconProps = React.ComponentPropsWithoutRef<'svg'>
 
 type IconProps = {
-  type: 'plus' | 'pencil' | 'trash' | 'ellipsis'
+  type: 'plus' | 'pencil' | 'trash' | 'ellipsis' | 'move'
 } & GenericIconProps
 
 function Icon(props: IconProps) {

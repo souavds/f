@@ -33,16 +33,19 @@ function Column(props: ColumnProps) {
   }, [column])
 
   return (
-    <div className='flex flex-col h-fit bg-slate-200 rounded-md' ref={setNodeRef}>
+    <div
+      className={`flex flex-col h-fit rounded-md transition-colors ${isOver ? 'bg-zinc-100' : 'bg-zinc-200'}`}
+      ref={setNodeRef}
+    >
       <div className='py-2 px-4'>
         <h2 className='font-bold text-sm'>
-          {column.title} <span className='text-xs mx-2 p-1 bg-slate-300 rounded-full'>{countTaskByColumn(id)}</span>
+          {column.title} <span className='text-xs mx-2 p-1 bg-zinc-300 rounded-full'>{countTaskByColumn(id)}</span>
         </h2>
       </div>
-      <hr className='w-full h-1 bg-white' />
+      <hr className='w-full h-1 bg-zinc-50' />
       <div className='flex flex-col gap-2 py-4 px-4'>
         <button
-          className='flex justify-center py-2 w-full bg-slate-300 border border-slate-400 rounded'
+          className='flex justify-center py-2 w-full bg-zinc-300 border border-zinc-400 rounded'
           onClick={() => onAddTask(id)}
         >
           <Icon type='plus' className='fill-current' height={16} width={16} />

@@ -12,7 +12,7 @@ type TaskFormProps = {
 function TaskForm(props: TaskFormProps) {
   const { isOpen, openModal, closeModal } = props
 
-  const { task, column, selectColumn, addTaskToColumn, updateTask, resetTask } = useBoardStore(state => ({
+  const { task, column, getColumn, selectColumn, addTaskToColumn, updateTask, resetTask } = useBoardStore(state => ({
     task: state.task,
     column: state.column,
     getColumn: state.getColumn,
@@ -55,6 +55,11 @@ function TaskForm(props: TaskFormProps) {
     closeModal()
   }
 
+  const title = React.useMemo(() => {
+    const selectedColumn = getColumn(column)
+    return selectedColumn ? selectedColumn.title : ''
+  }, [column, getColumn])
+
   return (
     <Modal
       title={
@@ -63,7 +68,7 @@ function TaskForm(props: TaskFormProps) {
             `${task.content}`
           ) : (
             <>
-              Add task to <strong>{column}</strong>
+              Add task to <strong>{title}</strong>
             </>
           )}
         </span>

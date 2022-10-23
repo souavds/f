@@ -1,13 +1,13 @@
 # Autocomplete App
 
-Live: https://autocomplete.git.avds.dev/
+Live: https://autocomplete.f.avds.dev/
 
 ## How to run in development mode
 
 ### Clone repository
 
 ```
-git clone https://github.com/souavds/autocomplete.git && cd autocomplete
+git clone https://github.com/souavds/f.git && cd f/autocomplete
 ```
 
 ### Install dependencies

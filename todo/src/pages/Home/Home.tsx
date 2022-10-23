@@ -3,6 +3,8 @@ import React from 'react'
 import Board from 'components/Board'
 
 function Home() {
+  // useQuery here for getting the board data
+
   return (
     <div className='p-10 h-full'>
       <h1 className='text-2xl font-bold py-6'>To-do App</h1>

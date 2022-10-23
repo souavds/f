@@ -10,7 +10,7 @@ type IconProps = {
 } & GenericIconProps
 
 function Icon(props: IconProps) {
-  const { type, ...rest } = props
+  const { type } = props
 
   const [Component, setComponent] = React.useState<React.LazyExoticComponent<React.ComponentType<any>> | null>()
 
@@ -18,7 +18,7 @@ function Icon(props: IconProps) {
     setComponent(loader(type))
   }, [type])
 
-  return <React.Suspense fallback={<></>}>{Component && <Component {...rest} />}</React.Suspense>
+  return <React.Suspense fallback={<></>}>{Component && <Component id={props.type} {...props} />}</React.Suspense>
 }
 
 export default Icon

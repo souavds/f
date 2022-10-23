@@ -13,6 +13,8 @@ type ColumnProps = {
 function Column(props: ColumnProps) {
   const { id } = props
 
+  // useQuery here for getting the column data and tasks
+
   const { isOver, setNodeRef } = useDroppable({
     id,
     data: {

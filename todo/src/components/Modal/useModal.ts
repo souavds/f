@@ -3,8 +3,8 @@ import React from 'react'
 export const useModal = () => {
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const openModal = () => setIsOpen(true)
-  const closeModal = () => setIsOpen(false)
+  const open = () => setIsOpen(true)
+  const close = () => setIsOpen(false)
 
-  return { isOpen, openModal, closeModal }
+  return { isOpen, open, close }
 }

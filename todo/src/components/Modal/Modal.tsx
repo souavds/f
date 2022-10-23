@@ -43,7 +43,6 @@ function Modal(props: ModalProps) {
                   {title}
                 </Dialog.Title>
                 <div className='mt-2'>{children}</div>
-
                 <div className='mt-4'>{actions}</div>
               </Dialog.Panel>
             </Transition.Child>

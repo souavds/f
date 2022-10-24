@@ -62,7 +62,7 @@ function Column(props: ColumnProps) {
         >
           <Icon type='plus' className='fill-current' height={16} width={16} />
         </button>
-        <div className='flex flex-col gap-2 max-h-96 overflow-y-auto'>
+        <div className='flex flex-col gap-2'>
           {tasks.map(task => (
             <Task key={task.id} columnId={id} value={task} />
           ))}

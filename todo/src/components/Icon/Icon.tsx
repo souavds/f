@@ -12,7 +12,7 @@ type IconProps = {
 function Icon(props: IconProps) {
   const { type } = props
 
-  const [Component, setComponent] = React.useState<React.LazyExoticComponent<React.ComponentType<any>> | null>()
+  const [Component, setComponent] = React.useState<React.LazyExoticComponent<React.ComponentType<unknown>> | null>()
 
   React.useEffect(() => {
     setComponent(loader(type))

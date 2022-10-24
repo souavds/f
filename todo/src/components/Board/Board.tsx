@@ -20,9 +20,9 @@ function Board() {
         const { data: from } = active
         const { data: to } = over
 
-        const columnId = from.current!.columnId
-        const toColumnId = to.current!.columnId
-        const taskId = from.current!.task.id
+        const columnId = from.current?.columnId
+        const toColumnId = to.current?.columnId
+        const taskId = from.current?.task.id
 
         if (columnId !== toColumnId) {
           moveTask(columnId, toColumnId, taskId)
@@ -36,7 +36,7 @@ function Board() {
   }, [columns])
 
   return (
-    <div className={`grid grid-cols-4 gap-4 p-4 min-h-fit h-full rounded-md bg-zinc-50`}>
+    <div className='grid grid-cols-4 gap-4 p-4 min-h-fit h-full rounded-md bg-zinc-50'>
       {columnsIds.map(id => (
         <Column key={id} id={id} />
       ))}

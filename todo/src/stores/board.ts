@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import create from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { v4 as uuid } from 'uuid'

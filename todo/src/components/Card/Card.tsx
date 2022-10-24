@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 
 type CardProps = {
@@ -19,5 +20,7 @@ const Card = React.forwardRef((props: CardProps, ref: React.ForwardedRef<HTMLDiv
     </div>
   )
 })
+
+Card.displayName = 'Card'
 
 export default Card
